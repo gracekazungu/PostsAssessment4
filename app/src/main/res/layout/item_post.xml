@@ -16,10 +16,9 @@
         <TextView
             android:id="@+id/tvUserId"
             android:layout_width="200dp"
-            android:layout_height="46dp"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="37dp"
-            android:layout_marginEnd="273dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="16dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -27,11 +26,10 @@
 
         <TextView
             android:id="@+id/tvId"
-            android:layout_width="193dp"
-            android:layout_height="53dp"
-            android:layout_marginStart="11dp"
-            android:layout_marginTop="22dp"
-            android:layout_marginEnd="207dp"
+            android:layout_width="201dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="16dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,21 +37,25 @@
 
         <TextView
             android:id="@+id/tvTitle"
-            android:layout_width="207dp"
-            android:layout_height="55dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="28dp"
+            android:layout_width="216dp"
+            android:layout_height="82dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="16dp"
             android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvId" />
 
         <TextView
             android:id="@+id/tvBody"
-            android:layout_width="211dp"
-            android:layout_height="65dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="232dp"
+            android:layout_height="146dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
     </androidx.constraintlayout.widget.ConstraintLayout>
