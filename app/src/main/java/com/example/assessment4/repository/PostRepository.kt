@@ -1,30 +1,34 @@
-package com.example.assessment4.viewmodel
+package com.example.assessment4.repository
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+
+import com.example.assessment4.api.ApiInterface
 import com.example.assessment4.model.Post
-import com.example.assessment4.repository.PostRepository
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PostViewModel(private val apiInterface: PostRepository) : ViewModel() {
+class PostRepository(private val apiInterface: ApiInterface) {
 
-    val postsLiveData: MutableLiveData<List<Post>?> = MutableLiveData()
-
-    fun getPosts() {
+    fun getPosts(callback: (List<Post>?, Throwable?) -> Unit) {
         val request = apiInterface.getPosts()
         request.enqueue(object : Callback<List<Post>> {
             override fun onResponse(call: Call<List<Post>>, response: Response<List<Post>>) {
                 if (response.isSuccessful) {
                     val posts = response.body()
-                    postsLiveData.postValue(posts)
+                    callback(posts, null)
+                } else {
+                    callback(null, Throwable("Response not successful"))
                 }
             }
 
             override fun onFailure(call: Call<List<Post>>, t: Throwable) {
+                callback(null, t)
             }
         })
     }
 }
+
+
+
+
 
