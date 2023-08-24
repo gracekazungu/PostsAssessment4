@@ -8,7 +8,9 @@ object ApiClient {
         .baseUrl("https://jsonplaceholder.typicode.com/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
-    fun <T> buildApiClient(apiInterface: Class<T>): T {
+    fun <T> buildClient(apiInterface: Class<T>): T {
         return retrofit.create(apiInterface)
     }
 }
+
+

@@ -1,30 +1,55 @@
 package com.example.assessment4.viewmodel
 
+
+//import androidx.lifecycle.MutableLiveData
+//import androidx.lifecycle.ViewModel
+//import androidx.lifecycle.viewModelScope
+//import com.example.assessment4.model.Post
+//import com.example.assessment4.repository.PostRepository
+//import kotlinx.coroutines.launch
+//
+//class PostViewModel :ViewModel(){
+//    var productsRepo= PostRepository()
+//    val productsLiveData= MutableLiveData<List<Post>>()
+//    val errorLiveData= MutableLiveData<String>()
+//
+//    fun fetchProducts(){
+//        viewModelScope.launch{
+//            val response=productsRepo.getProducts()
+//            if(response.isSuccessful){
+//                productsLiveData.postValue(response.body()?.post)
+//            }
+//            else{
+//                errorLiveData.postValue(response.errorBody()?.string())
+//            }
+//        }
+//    }
+//}
 import androidx.lifecycle.MutableLiveData
+
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.assessment4.model.Post
 import com.example.assessment4.repository.PostRepository
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.launch
 
-class PostViewModel(private val apiInterface: PostRepository) : ViewModel() {
+class PostViewModel:ViewModel (){
+    var postsRepo= PostRepository()
+    var postsLiveData= MutableLiveData<List<Post>>()
+    var errorLiveData= MutableLiveData<String>()
 
-    val postsLiveData: MutableLiveData<List<Post>?> = MutableLiveData()
+    fun fetchPosts(){
+        viewModelScope.launch{
+            val response=postsRepo.getPosts()
+            if(response.isSuccessful){
 
-    fun getPosts() {
-        val request = apiInterface.getPosts()
-        request.enqueue(object : Callback<List<Post>> {
-            override fun onResponse(call: Call<List<Post>>, response: Response<List<Post>>) {
-                if (response.isSuccessful) {
-                    val posts = response.body()
-                    postsLiveData.postValue(posts)
-                }
+                val postsList = response.body() ?: emptyList()
+                postsLiveData.postValue(postsList as
+                        List<Post>)
             }
-
-            override fun onFailure(call: Call<List<Post>>, t: Throwable) {
+            else{
+                errorLiveData.postValue(response.errorBody()?.string())
             }
-        })
+        }
     }
 }
-
